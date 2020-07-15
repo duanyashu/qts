@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qts.dao.BranchMapper" >
+  <resultMap id="BaseResultMap" type="com.qts.pojo.Branch" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="branch_name" property="branchName" jdbcType="VARCHAR" />
+    <result column="branch_code" property="branchCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, branch_name, branch_code
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from branch
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from branch
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.qts.pojo.Branch" >
+    insert into branch (id, branch_name, branch_code
+      )
+    values (#{id,jdbcType=VARCHAR}, #{branchName,jdbcType=VARCHAR}, #{branchCode,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qts.pojo.Branch" >
+    insert into branch
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="branchName != null" >
+        branch_name,
+      </if>
+      <if test="branchCode != null" >
+        branch_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="branchName != null" >
+        #{branchName,jdbcType=VARCHAR},
+      </if>
+      <if test="branchCode != null" >
+        #{branchCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qts.pojo.Branch" >
+    update branch
+    <set >
+      <if test="branchName != null" >
+        branch_name = #{branchName,jdbcType=VARCHAR},
+      </if>
+      <if test="branchCode != null" >
+        branch_code = #{branchCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qts.pojo.Branch" >
+    update branch
+    set branch_name = #{branchName,jdbcType=VARCHAR},
+      branch_code = #{branchCode,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectByUserId" resultMap="BaseResultMap">
+    SELECT
+	*
+FROM
+	branch
+WHERE
+	id IN (
+		SELECT
+			branch_id
+		FROM
+			role_branch
+		WHERE
+			role_id IN (
+				SELECT
+					role_id
+				FROM
+					user_role
+				WHERE
+					user_id = #{?}
+			)
+	)
+  </select>
+</mapper>

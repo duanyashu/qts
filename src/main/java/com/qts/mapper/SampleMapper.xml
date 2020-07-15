@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qts.dao.SampleMapper" >
+  <resultMap id="BaseResultMap" type="com.qts.pojo.Sample" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="sample_code" property="sampleCode" jdbcType="VARCHAR" />
+    <result column="link_id" property="linkId" jdbcType="VARCHAR" />
+    <result column="sender" property="sender" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="cargoname" property="cargoname" jdbcType="VARCHAR" />
+    <result column="carnum" property="carnum" jdbcType="VARCHAR" />
+    <result column="branch_name" property="branchName" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="BIT" />
+    <result column="merge_state" property="mergeState" jdbcType="BIT" />
+    <result column="merge_code" property="mergeCode" jdbcType="VARCHAR" />
+    <result column="merge_rule" property="mergeRule" jdbcType="INTEGER" />
+    <result column="create_id" property="createId" jdbcType="VARCHAR" />
+    <result column="shifts" property="shifts" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="branch_code" property="branchCode" jdbcType="VARCHAR" />
+    <result column="rule_merge_id" property="ruleMergeId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, sample_code, link_id, sender, type, cargoname, carnum, branch_name, state, merge_state, 
+    merge_code, merge_rule, create_id, shifts, create_time, branch_code, rule_merge_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from sample
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from sample
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.qts.pojo.Sample" >
+    insert into sample (id, sample_code, link_id, 
+      sender, type, cargoname, 
+      carnum, branch_name, state, 
+      merge_state, merge_code, merge_rule, 
+      create_id, shifts, create_time, 
+      branch_code, rule_merge_id)
+    values (#{id,jdbcType=VARCHAR}, #{sampleCode,jdbcType=VARCHAR}, #{linkId,jdbcType=VARCHAR}, 
+      #{sender,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{cargoname,jdbcType=VARCHAR}, 
+      #{carnum,jdbcType=VARCHAR}, #{branchName,jdbcType=VARCHAR}, #{state,jdbcType=BIT}, 
+      #{mergeState,jdbcType=BIT}, #{mergeCode,jdbcType=VARCHAR}, #{mergeRule,jdbcType=INTEGER}, 
+      #{createId,jdbcType=VARCHAR}, #{shifts,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP},
+      #{branchCode,jdbcType=VARCHAR}, #{ruleMergeId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qts.pojo.Sample" >
+    insert into sample
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="sampleCode != null" >
+        sample_code,
+      </if>
+      <if test="linkId != null" >
+        link_id,
+      </if>
+      <if test="sender != null" >
+        sender,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="cargoname != null" >
+        cargoname,
+      </if>
+      <if test="carnum != null" >
+        carnum,
+      </if>
+      <if test="branchName != null" >
+        branch_name,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="mergeState != null" >
+        merge_state,
+      </if>
+      <if test="mergeCode != null" >
+        merge_code,
+      </if>
+      <if test="mergeRule != null" >
+        merge_rule,
+      </if>
+      <if test="createId != null" >
+        create_id,
+      </if>
+      <if test="shifts != null" >
+        shifts,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="branchCode != null" >
+        branch_code,
+      </if>
+      <if test="ruleMergeId != null" >
+        rule_merge_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="sampleCode != null" >
+        #{sampleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="linkId != null" >
+        #{linkId,jdbcType=VARCHAR},
+      </if>
+      <if test="sender != null" >
+        #{sender,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="cargoname != null" >
+        #{cargoname,jdbcType=VARCHAR},
+      </if>
+      <if test="carnum != null" >
+        #{carnum,jdbcType=VARCHAR},
+      </if>
+      <if test="branchName != null" >
+        #{branchName,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=BIT},
+      </if>
+      <if test="mergeState != null" >
+        #{mergeState,jdbcType=BIT},
+      </if>
+      <if test="mergeCode != null" >
+        #{mergeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="mergeRule != null" >
+        #{mergeRule,jdbcType=INTEGER},
+      </if>
+      <if test="createId != null" >
+        #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="shifts != null" >
+        #{shifts,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="branchCode != null" >
+        #{branchCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleMergeId != null" >
+        #{ruleMergeId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qts.pojo.Sample" >
+    update sample
+    <set >
+      <if test="sampleCode != null" >
+        sample_code = #{sampleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="linkId != null" >
+        link_id = #{linkId,jdbcType=VARCHAR},
+      </if>
+      <if test="sender != null" >
+        sender = #{sender,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="cargoname != null" >
+        cargoname = #{cargoname,jdbcType=VARCHAR},
+      </if>
+      <if test="carnum != null" >
+        carnum = #{carnum,jdbcType=VARCHAR},
+      </if>
+      <if test="branchName != null" >
+        branch_name = #{branchName,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=BIT},
+      </if>
+      <if test="mergeState != null" >
+        merge_state = #{mergeState,jdbcType=BIT},
+      </if>
+      <if test="mergeCode != null" >
+        merge_code = #{mergeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="mergeRule != null" >
+        merge_rule = #{mergeRule,jdbcType=INTEGER},
+      </if>
+      <if test="createId != null" >
+        create_id = #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="shifts != null" >
+        shifts = #{shifts,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="branchCode != null" >
+        branch_code = #{branchCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleMergeId != null" >
+        rule_merge_id = #{ruleMergeId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qts.pojo.Sample" >
+    update sample
+    set sample_code = #{sampleCode,jdbcType=VARCHAR},
+      link_id = #{linkId,jdbcType=VARCHAR},
+      sender = #{sender,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      cargoname = #{cargoname,jdbcType=VARCHAR},
+      carnum = #{carnum,jdbcType=VARCHAR},
+      branch_name = #{branchName,jdbcType=VARCHAR},
+      state = #{state,jdbcType=BIT},
+      merge_state = #{mergeState,jdbcType=BIT},
+      merge_code = #{mergeCode,jdbcType=VARCHAR},
+      merge_rule = #{mergeRule,jdbcType=INTEGER},
+      create_id = #{createId,jdbcType=VARCHAR},
+      shifts = #{shifts,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      branch_code = #{branchCode,jdbcType=VARCHAR},
+      rule_merge_id = #{ruleMergeId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectConsoleData" resultType="java.util.Map">
+    select
+        count(*) as sampleCount,
+	    GROUP_CONCAT(sample_code ORDER BY sample_code) as sampleCodes,
+        GROUP_CONCAT(state ORDER BY sample_code) as state,
+	    merge_rule AS mergeRule
+    FROM sample
+    where branch_code=#{?} and merge_state='0'
+    GROUP BY merge_code
+    ORDER BY sampleCodes
+  </select>
+
+  <select id="selectByLinkId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from sample
+    where link_id = #{linkId,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectMaxSampleCode" resultType="java.lang.String">
+    select sample_code FROM sample where branch_code=#{?} ORDER BY create_time desc limit 1
+  </select>
+  
+  <select id="selectLastMergeCodeAndCount" resultType="java.util.Map">
+        select count(*) as count ,merge_code as mergeCode
+        from (select merge_code
+                FROM sample
+                WHERE branch_code=#{branchCode} and merge_state=0
+                AND rule_merge_id =#{ruleMergeId}
+                ORDER BY create_time desc limit 10000000000)a
+  </select>
+
+  <update id="updateMergeStateByMergeCode">
+    update sample set merge_state=#{mergeState} , state=#{state} where merge_code=#{mergeCode}
+  </update>
+
+  <resultMap id="SampleSaoMaVoMap" type="com.qts.entity.SampleSaoMaVo">
+    <id property="id" column="id"/>
+    <result property="margeCode" column="merge_code"/>
+    <result property="sender" column="sender"/>
+    <result property="type" column="type"/>
+    <result property="ruleMergeId" column="rule_merge_id"/>
+    <result property="branchCode" column="branch_code"/>
+    <result property="state" column="state"/>
+    <result property="mergeState" column="merge_state"/>
+    <result property="mergeRule" column="merge_rule"/>
+    <result property="sampleCodes" column="sampleCodes"/>
+    <result property="margeCarnums" column="margeCarnums"/>
+    <result property="stateCount" column="stateCount"/>
+  </resultMap>
+
+  <select id="selectSaomaData" resultMap="SampleSaoMaVoMap">
+        select
+    merge_code,
+    sender,
+    type,
+    rule_merge_id,
+    branch_code,
+    merge_state,
+    merge_rule,
+    GROUP_CONCAT(case WHEN sample_code=#{?} then state else null end) as state,
+    GROUP_CONCAT(case WHEN sample_code=#{?} then id else null end) as id,
+    GROUP_CONCAT(sample_code) as sampleCodes,
+    GROUP_CONCAT(carnum) as margeCarnums,
+    SUM( state) as stateCount
+     FROM sample WHERE merge_code =(select merge_code FROM sample  where sample_code=#{?} ORDER BY create_time desc LIMIT 1)
+  </select>
+
+  <select id="selectSampleList" parameterType="com.qts.request.SampleForm" resultMap="BaseResultMap">
+    select * from sample
+    <where>
+      <if test="sampleCode!=null and sampleCode!=''">
+        and sample_code = #{sampleCode}
+      </if>
+      <if test="startTime!=null and startTime!=''">
+        <![CDATA[  and create_time  >= str_to_date(#{startTime},'%Y-%m-%d %H:%i:%s')]]>
+      </if>
+      <if test="endTime!=null and endTime!=''">
+        <![CDATA[  and create_time  <= str_to_date(#{endTime},'%Y-%m-%d %H:%i:%s')]]>
+      </if>
+    </where>
+    limit #{startRow},#{pageSize}
+  </select>
+  <select id="selectSampleListCount" parameterType="com.qts.request.SampleForm" resultType="java.lang.Integer">
+    select count(*) from sample
+    <where>
+      <if test="sampleCode!=null and sampleCode!=''">
+            and sample_code = #{sampleCode}
+      </if>
+      <if test="startTime!=null and startTime!=''">
+         <![CDATA[    and create_time  >= str_to_date(#{startTime},'%Y-%m-%d %H:%i:%s')]]>
+      </if>
+      <if test="endTime!=null and endTime!=''">
+         <![CDATA[  and create_time  <= str_to_date(#{endTime},'%Y-%m-%d %H:%i:%s')]]>
+      </if>
+    </where>
+  </select>
+
+</mapper>

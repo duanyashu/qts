@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qts.dao.AssayItemMapper" >
+  <resultMap id="BaseResultMap" type="com.qts.pojo.AssayItem" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="item_name" property="itemName" jdbcType="VARCHAR" />
+    <result column="standard" property="standard" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="temp_id" property="tempId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, item_name, standard, type, temp_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from assay_item
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from assay_item
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.qts.pojo.AssayItem" >
+    insert into assay_item (id, item_name, standard, 
+      type, temp_id)
+    values (#{id,jdbcType=VARCHAR}, #{itemName,jdbcType=VARCHAR}, #{standard,jdbcType=VARCHAR}, 
+      #{type,jdbcType=INTEGER}, #{tempId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qts.pojo.AssayItem" >
+    insert into assay_item
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="itemName != null" >
+        item_name,
+      </if>
+      <if test="standard != null" >
+        standard,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="tempId != null" >
+        temp_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null" >
+        #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="standard != null" >
+        #{standard,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="tempId != null" >
+        #{tempId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qts.pojo.AssayItem" >
+    update assay_item
+    <set >
+      <if test="itemName != null" >
+        item_name = #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="standard != null" >
+        standard = #{standard,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="tempId != null" >
+        temp_id = #{tempId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qts.pojo.AssayItem" >
+    update assay_item
+    set item_name = #{itemName,jdbcType=VARCHAR},
+      standard = #{standard,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      temp_id = #{tempId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectByTempl" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from assay_item
+    where temp_id = #{?}
+  </select>
+</mapper>

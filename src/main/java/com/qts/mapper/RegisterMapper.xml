@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qts.dao.RegisterMapper" >
+  <resultMap id="BaseResultMap" type="com.qts.pojo.Register" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="supplier" property="supplier" jdbcType="VARCHAR" />
+    <result column="coaltype" property="coaltype" jdbcType="VARCHAR" />
+    <result column="carnum" property="carnum" jdbcType="VARCHAR" />
+    <result column="factory" property="factory" jdbcType="VARCHAR" />
+    <result column="card_id" property="cardId" jdbcType="VARCHAR" />
+    <result column="cargoname" property="cargoname" jdbcType="VARCHAR" />
+    <result column="LinkID" property="linkid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, create_time, supplier, coaltype, carnum, factory, card_id, cargoname, LinkID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from register
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from register
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.qts.pojo.Register" >
+    insert into register (id, create_time, supplier, 
+      coaltype, carnum, factory, 
+      card_id, cargoname, LinkID
+      )
+    values (#{id,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{supplier,jdbcType=VARCHAR}, 
+      #{coaltype,jdbcType=VARCHAR}, #{carnum,jdbcType=VARCHAR}, #{factory,jdbcType=VARCHAR}, 
+      #{cardId,jdbcType=VARCHAR}, #{cargoname,jdbcType=VARCHAR}, #{linkid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qts.pojo.Register" >
+    insert into register
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="supplier != null" >
+        supplier,
+      </if>
+      <if test="coaltype != null" >
+        coaltype,
+      </if>
+      <if test="carnum != null" >
+        carnum,
+      </if>
+      <if test="factory != null" >
+        factory,
+      </if>
+      <if test="cardId != null" >
+        card_id,
+      </if>
+      <if test="cargoname != null" >
+        cargoname,
+      </if>
+      <if test="linkid != null" >
+        LinkID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="supplier != null" >
+        #{supplier,jdbcType=VARCHAR},
+      </if>
+      <if test="coaltype != null" >
+        #{coaltype,jdbcType=VARCHAR},
+      </if>
+      <if test="carnum != null" >
+        #{carnum,jdbcType=VARCHAR},
+      </if>
+      <if test="factory != null" >
+        #{factory,jdbcType=VARCHAR},
+      </if>
+      <if test="cardId != null" >
+        #{cardId,jdbcType=VARCHAR},
+      </if>
+      <if test="cargoname != null" >
+        #{cargoname,jdbcType=VARCHAR},
+      </if>
+      <if test="linkid != null" >
+        #{linkid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qts.pojo.Register" >
+    update register
+    <set >
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="supplier != null" >
+        supplier = #{supplier,jdbcType=VARCHAR},
+      </if>
+      <if test="coaltype != null" >
+        coaltype = #{coaltype,jdbcType=VARCHAR},
+      </if>
+      <if test="carnum != null" >
+        carnum = #{carnum,jdbcType=VARCHAR},
+      </if>
+      <if test="factory != null" >
+        factory = #{factory,jdbcType=VARCHAR},
+      </if>
+      <if test="cardId != null" >
+        card_id = #{cardId,jdbcType=VARCHAR},
+      </if>
+      <if test="cargoname != null" >
+        cargoname = #{cargoname,jdbcType=VARCHAR},
+      </if>
+      <if test="linkid != null" >
+        LinkID = #{linkid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qts.pojo.Register" >
+    update register
+    set create_time = #{createTime,jdbcType=TIMESTAMP},
+      supplier = #{supplier,jdbcType=VARCHAR},
+      coaltype = #{coaltype,jdbcType=VARCHAR},
+      carnum = #{carnum,jdbcType=VARCHAR},
+      factory = #{factory,jdbcType=VARCHAR},
+      card_id = #{cardId,jdbcType=VARCHAR},
+      cargoname = #{cargoname,jdbcType=VARCHAR},
+      LinkID = #{linkid,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
