@@ -21,7 +21,7 @@
     <druid.version>1.1.20</druid.version>
     <mybatis.version>3.4.2</mybatis.version>
     <mybatis-srping.version>1.3.2</mybatis-srping.version>
-    <mysql.version>5.1.38</mysql.version>
+    <mysql.version>8.0.28</mysql.version>
     <jackson.version>2.11.0</jackson.version>
     <pageHelper.version>5.1.11</pageHelper.version>
     <shiro.version>1.4.0</shiro.version>
@@ -218,7 +218,7 @@
           <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.28</version>
+            <version>8.0.28</version>
             <scope>runtime</scope>
           </dependency>
         </dependencies>
